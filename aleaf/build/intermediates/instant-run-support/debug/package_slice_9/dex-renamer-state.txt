@@ -1,0 +1,4 @@
+#Sun Jan 13 18:39:21 CST 2019
+base.0=F\:\\A-Leaf-Diary\\aleaf\\build\\intermediates\\transforms\\dexMerger\\debug\\28
+renamed.0=classes.dex
+file.0=F\:\\A-Leaf-Diary\\aleaf\\build\\intermediates\\transforms\\dexMerger\\debug\\28\\classes.dex

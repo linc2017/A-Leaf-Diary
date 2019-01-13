@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/pen"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/pen"
+            android:contentDescription="pen" >
+        </ImageButton>
+        
+        <ImageButton
+            android:id="@+id/pens"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/pens"
+            android:contentDescription="pens" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/colors"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/colors"
+            android:contentDescription="colors" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/eraser"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/eraser"
+            android:textOff=""
+            android:textOn=""
+            android:contentDescription="eraser" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/undo"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/undo"
+            android:contentDescription="undo" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/redo"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/redo"
+            android:contentDescription="redo" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/clear"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/clear"
+            android:contentDescription="clear" >
+        </ImageButton>
+
+    </LinearLayout>
+
+</LinearLayout>
