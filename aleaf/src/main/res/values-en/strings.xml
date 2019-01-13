@@ -18,6 +18,7 @@
     <string name="title_activity_palette">Palette</string>
     <string name="clear_palette_reconfirm">Are you sure you want to clear the screen?</string>
     <string name="title_activity_gallery">Gallery</string>
+    <string name="no_painting_tip">No painting in your gallery</string>
     <string name="title_activity_gallery_view">Gallery</string>
     <string name="delete_painting_reconfirm">Are you sure you want to delete the painting?</string>
     <string name="title_activity_login">ALeaf</string>
@@ -36,7 +37,7 @@
     <string name="version">Version</string>
     <string name="password_tip">Enable password login, please remember your password in mind.</string>
     <string name="diary_desc">You can create a text diary or a painting diary; the palette can either draw or write as a handwriting function.</string>
-    <string name="email">melinsheng@163.com</string>
+    <string name="qq">QQ:215514058</string>
     <string name="version_text">0.1.0</string>
     <string name="set_pen_size">Set pen size</string>
     <string name="click_to_enjoy">Click to enjoy</string>

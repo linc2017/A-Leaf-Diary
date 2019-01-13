@@ -12,7 +12,10 @@
         android:layout_gravity="center"
  		android:visibility="gone"
         android:gravity="center_horizontal"
-        android:text="您的画廊中还没有绘画" />
+        android:text="@string/no_painting_tip"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
         
     <GridView
         android:id="@+id/gallery_grid"

@@ -35,8 +35,8 @@ public class SettingsActivity extends ListActivity {
 	}
 	
 	private void init() {
-        String[] listTitle = { getString(R.string.security), getString(R.string.help), getString(R.string.version) };
-        String[] listText = { getString(R.string.password_tip), getString(R.string.diary_desc), getString(R.string.version_text) };
+        String[] listTitle = { getString(R.string.security), getString(R.string.help), getString(R.string.support), getString(R.string.version) };
+        String[] listText = { getString(R.string.password_tip), getString(R.string.diary_desc), getString(R.string.qq), getString(R.string.version_text) };
         
 		listView = getListView();
 		int lengh = listTitle.length;

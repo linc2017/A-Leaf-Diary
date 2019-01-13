@@ -18,6 +18,7 @@
     <string name="title_activity_palette">画板</string>
     <string name="clear_palette_reconfirm">确定要清屏吗？</string>
     <string name="title_activity_gallery">画廊</string>
+    <string name="no_painting_tip">您的画廊中还没有绘画</string>
     <string name="title_activity_gallery_view">画廊</string>
     <string name="delete_painting_reconfirm">确定要删除绘画吗？</string>
     <string name="title_activity_login">一叶日记</string>
@@ -36,7 +37,7 @@
     <string name="version">当前版本</string>
     <string name="password_tip">启用密码登录，请牢记密码</string>
     <string name="diary_desc">您可以创建文字日记或绘画日记；画板既可以画画，也可作为手写功能书写文字</string>
-    <string name="email">melinsheng@163.com</string>
+    <string name="qq">QQ:215514058</string>
     <string name="version_text">0.1.0</string>
     <string name="set_pen_size">设置画笔大小</string>
     <string name="click_to_enjoy">点击欣赏</string>
