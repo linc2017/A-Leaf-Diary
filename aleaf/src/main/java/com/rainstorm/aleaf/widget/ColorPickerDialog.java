@@ -14,8 +14,8 @@ import com.rainstorm.aleaf.R;
  * @author liys
  */
 public class ColorPickerDialog extends Dialog {
-	private static final int CENTER_X = 150;
-	private static final int CENTER_Y = 150;
+	private static final int CENTER_X = 200;
+	private static final int CENTER_Y = 200;
 	private static final int CENTER_RADIUS = 50;
 	private static final float PI = 3.1415926f;
 
@@ -35,18 +35,18 @@ public class ColorPickerDialog extends Dialog {
 
 		ColorPickerView(Context context, OnColorChangedListener listener, int color) {
 			super(context);
-			listener = listener;
+			this.listener = listener;
 			colors = new int[] { 0xFFFF0000, 0xFFFF00FF, 0xFF0000FF, 0xFF00FFFF, 0xFF00FF00, 0xFFFFFF00, 0xFFFF0000 };
 			Shader s = new SweepGradient(0, 0, colors, null);
 
 			paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			paint.setShader(s);
 			paint.setStyle(Paint.Style.STROKE);
-			paint.setStrokeWidth(50);
+			paint.setStrokeWidth(100);
 
 			centerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			centerPaint.setColor(color);
-			centerPaint.setStrokeWidth(5);
+			centerPaint.setStrokeWidth(10);
 		}
 
 		private boolean mTrackingCenter;
