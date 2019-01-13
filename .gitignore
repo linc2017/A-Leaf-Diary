@@ -7,6 +7,6 @@
 /build
 /captures
 .externalNativeBuild
-/app/build
-/app/release
-/app/app.iml
+/aleaf/build
+/aleaf/release
+/aleaf/app.iml
