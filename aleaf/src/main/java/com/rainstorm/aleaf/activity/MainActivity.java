@@ -231,7 +231,6 @@ public class MainActivity extends Activity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
 							if (which == 0) {
 								String sharedTitle = diaries.get(position).getTitle();
 								String sharedText = diaries.get(position).getText();

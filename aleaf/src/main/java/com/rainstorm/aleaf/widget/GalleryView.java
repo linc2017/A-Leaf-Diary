@@ -48,7 +48,7 @@ public class GalleryView extends Gallery {
 			kEvent = KeyEvent.KEYCODE_DPAD_LEFT;
 		} else {
 			if (p == count - 1 && isLast) {
-				Toast.makeText(this.getContext(), this.getContext().getString(R.string.first_page_tip), Toast.LENGTH_SHORT).show();
+				Toast.makeText(this.getContext(), this.getContext().getString(R.string.last_page_tip), Toast.LENGTH_SHORT).show();
 			} else if (p == count - 1) {
 				isLast = true;
 			} else {
