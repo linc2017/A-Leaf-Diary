@@ -38,7 +38,7 @@
     <string name="password_tip">Enable password login, please remember your password in mind.</string>
     <string name="diary_desc">You can create a text diary or a painting diary; the palette can either draw or write as a handwriting function.</string>
     <string name="qq">QQ:215514058</string>
-    <string name="version_text">0.1.0</string>
+    <string name="version_text">1.0.0</string>
     <string name="set_pen_size">Set pen size</string>
     <string name="click_to_enjoy">Click to enjoy</string>
     <string name="chose_color">Chose color</string>
