@@ -5,12 +5,12 @@
         android:id="@+id/action_gallery"
         android:icon="@drawable/gallery"
         android:showAsAction="always"
-        android:title="画廊" />
+        android:title="@string/gallery" />
     
     <item
         android:id="@+id/action_tools"
         android:icon="@drawable/tools"
         android:showAsAction="always"
-        android:title="显示/隐藏工具栏" />
+        android:title="@string/show_or_hide_painting_tools" />
     
 </menu>

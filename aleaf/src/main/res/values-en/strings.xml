@@ -49,5 +49,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="password">Password:</string>
     <string name="login">Login</string>
+    <string name="gallery">Gallery</string>
+    <string name="show_or_hide_painting_tools">Show or hide painting tools</string>
 
 </resources>

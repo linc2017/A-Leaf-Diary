@@ -49,5 +49,7 @@
     <string name="confirm_password">确认密码：</string>
     <string name="password">密码：</string>
     <string name="login">登录</string>
+    <string name="gallery">画廊</string>
+    <string name="show_or_hide_painting_tools">显示/隐藏绘画工具栏</string>
     
 </resources>
