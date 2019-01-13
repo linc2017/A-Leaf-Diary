@@ -42,8 +42,8 @@
     <string name="set_pen_size">设置画笔大小</string>
     <string name="click_to_enjoy">点击欣赏</string>
     <string name="chose_color">选择颜色</string>
-    <string name="first_page_tip">已到第一页</string>
-    <string name="last_page_tip">已到最后一页</string>
+    <string name="first_page_tip">已是第一页</string>
+    <string name="last_page_tip">已是最后一页</string>
     <string name="set_password_tip">清空密码即两次输入均为空</string>
     <string name="input_password">输入密码：</string>
     <string name="confirm_password">确认密码：</string>
