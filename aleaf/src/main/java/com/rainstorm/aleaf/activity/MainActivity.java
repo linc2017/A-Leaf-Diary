@@ -211,10 +211,8 @@ public class MainActivity extends Activity {
 			intent.setClass(MainActivity.this, DiaryEditActivity.class);
 			intent.putExtra("title", diaries.get(position).getTitle());
 			intent.putExtra("text", diaries.get(position).getText());
-			intent.putExtra("imageFilePath", diaries.get(position)
-					.getImageFilePath());
+			intent.putExtra("imageFilePath", diaries.get(position).getImageFilePath());
 			intent.putExtra("_id", diaries.get(position).getId());
-
 			startActivity(intent);
 		}
 	}

@@ -15,6 +15,7 @@ import com.rainstorm.aleaf.db.DatabaseManager;
 import com.rainstorm.aleaf.widget.ColorPickerDialog;
 import com.rainstorm.aleaf.widget.ColorPickerDialog.OnColorChangedListener;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -75,12 +76,14 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 	private int penSize;
 	private int penColor;
 	private boolean isEraser = false;
+	private String imageFilePath = null;
+	private int oldId = -1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		((BitmapDrawable) (getResources()
-				.getDrawable(R.drawable.background))).getBitmap();
+		((BitmapDrawable) (getResources().getDrawable(R.drawable.background))).getBitmap();
+		bundleEvents();
 		canvasView = new CanvasView(this);
 		canvasView.setBackgroundColor(Color.WHITE);
 		setContentView(canvasView);
@@ -89,6 +92,14 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
         
         initData();
 		initPaint();
+	}
+	
+	private void bundleEvents() {
+		Bundle bundle = this.getIntent().getExtras();
+		if (bundle != null) {
+			imageFilePath = bundle.getString("imageFilePath", null);
+			oldId = bundle.getInt("_id", -1);
+		}
 	}
 
     private void initData() {
@@ -105,7 +116,7 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
         }else{
             penSize = aLeafConfig.getInt("penSize", 0);
         }
-
+        
         paths = new ArrayList<DrawPath>();
         redoPaths = new ArrayList<DrawPath>();
     }
@@ -380,6 +391,19 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 			canvas = new Canvas();
 			canvas.setBitmap(bitmapDraw);
 			
+			if (imageFilePath != null) {
+				BitmapFactory.Options opts = new BitmapFactory.Options();
+				opts.inJustDecodeBounds = false;
+				try {
+					Bitmap bmp = BitmapFactory.decodeFile(imageFilePath, opts);
+					if(bmp != null){
+						canvas.drawBitmap(bmp, 0 , 0 , paint);
+					}
+				} catch (OutOfMemoryError e) {
+					e.printStackTrace();
+				}
+			}
+			
 			tempCanvas = new Canvas(bitmapDraw);
 			tempCanvas.drawColor(Color.TRANSPARENT);
 		}
@@ -489,29 +513,40 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 				if(!sdCardExist){
 					Toast.makeText(PaletteActivity.this, getString(R.string.sd_write_warning), Toast.LENGTH_SHORT).show();
 				}
-				filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aleaf/";
-
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+				String fullFilePath = "";
 				Date curDate = new Date(System.currentTimeMillis());
-				String fileName = formatter.format(curDate);
+				if (imageFilePath != null) {
+					fullFilePath = imageFilePath;
+					setResult(RESULT_OK);
+				}  else {
+					filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aleaf/";
 
-				Bitmap temp = getBmp();
-				File file = new File(filePath);
-				if (!file.isDirectory()) {
-					file.mkdirs();
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+					String fileName = formatter.format(curDate);
+					
+					File file = new File(filePath);
+					if (!file.isDirectory()) {
+						file.mkdirs();
+					}
+					fullFilePath = filePath + fileName + ".png";
 				}
-				FileOutputStream fos = new FileOutputStream(filePath + fileName + ".png");
+				
+				Bitmap temp = getBmp();
+				FileOutputStream fos = new FileOutputStream(fullFilePath);
 				temp.compress(CompressFormat.JPEG, 100, fos);
 				fos.close();
 				clearMemory(temp);
-
+				
 				DatabaseManager manager = new DatabaseManager(PaletteActivity.this);
+				if (oldId != -1) {
+					manager.delete(oldId);
+				}
 				SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd H:mm");
 				String strDate = sf.format(curDate);
-                Diary diary = new Diary();
+				Diary diary = new Diary();
 				diary.setTitle(getString(R.string.diary_title));
 				diary.setDate(strDate);
-				diary.setImageFilePath(filePath + fileName + ".png");
+				diary.setImageFilePath(fullFilePath);
 				manager.insert(diary);
 			}
 			catch (Exception e) {

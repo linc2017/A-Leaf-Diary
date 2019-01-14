@@ -45,6 +45,10 @@ public class DiaryEditActivity extends Activity {
 	private String oldTitle = null;
 	private String oldText = null;
 	private int oldId;
+	private long lastClickImageViewTime = 0;
+	private long curClickImageViewTime = 0;
+	private long lastOpenPaletteTime = 0;
+	private boolean hasOpendPaletteJust = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,26 @@ public class DiaryEditActivity extends Activity {
 				oldTitle = diaryImageTitle.getText().toString();
 				oldText = diaryImageText.getText().toString();
 				oldId = bundle.getInt("_id");
+
+				diaryImage.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						lastClickImageViewTime = curClickImageViewTime;
+						curClickImageViewTime = System.currentTimeMillis();
+						if (curClickImageViewTime - lastOpenPaletteTime > 500) {
+							hasOpendPaletteJust = false;
+						}
+						if (!hasOpendPaletteJust && curClickImageViewTime - lastClickImageViewTime < 300) {
+							hasOpendPaletteJust = true;
+							lastOpenPaletteTime = curClickImageViewTime;
+							Intent intent = new Intent();
+							intent.setClass(DiaryEditActivity.this, PaletteActivity.class);
+							intent.putExtra("_id", oldId);
+							intent.putExtra("imageFilePath", imageFilePath);
+							startActivityForResult(intent, 0);
+						}
+					}
+				});
 			}
 
 		}
@@ -138,6 +162,28 @@ public class DiaryEditActivity extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (resultCode) {
+			case RESULT_OK:
+				BitmapFactory.Options opts = new BitmapFactory.Options();
+				opts.inJustDecodeBounds = false;
+				try {
+					Bitmap bmp = BitmapFactory.decodeFile(imageFilePath, opts);
+					if(bmp == null){
+						diaryImage.setImageResource(R.drawable.diary_miss_image);
+					} else {
+						diaryImage.setImageBitmap(bmp);
+					}
+				} catch (OutOfMemoryError e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+	
 	@SuppressLint("SimpleDateFormat")
 	private void backAndSave() {
 		if (imageFilePath == null) {
@@ -146,7 +192,8 @@ public class DiaryEditActivity extends Activity {
 				if (mStateModify == true && oldTitle.equals(diaryTitle.getText().toString()) && oldText.equals(diaryText.getText().toString())) {
 					DiaryEditActivity.this.finish();
 				} else if (mStateModify == true && (!oldTitle.equals(diaryTitle.getText().toString()) || !oldText.equals(diaryText.getText().toString()))) {
-					DatabaseManager manager = new DatabaseManager(DiaryEditActivity.this);manager.delete(oldId);
+					DatabaseManager manager = new DatabaseManager(DiaryEditActivity.this);
+					manager.delete(oldId);
 					
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd H:mm");
 					Date curDate = new Date(System.currentTimeMillis());
