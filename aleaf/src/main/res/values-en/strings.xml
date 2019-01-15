@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ALeaf</string>
+    <string name="app_name">A Leaf</string>
     <string name="action_add">Diary</string>
     <string name="action_palette">Palette</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">ALeaf</string>
+    <string name="hello_world">A Leaf</string>
     <string name="title_activity_diary_edit">Diary</string>
     <string name="edit_title">Input title</string>
     <string name="edit_text">Input content</string>
@@ -21,7 +21,7 @@
     <string name="no_painting_tip">No painting in your gallery</string>
     <string name="title_activity_gallery_view">Gallery</string>
     <string name="delete_painting_reconfirm">Are you sure you want to delete the painting?</string>
-    <string name="title_activity_login">ALeaf</string>
+    <string name="title_activity_login">A Leaf</string>
     <string name="title_activity_set_password">Set password</string>
     <string name="set_password_success">Set success</string>
     <string name="set_password_fail">Both the input passwords must be consistent</string>
