@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.support.v4.content.FileProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -233,7 +234,7 @@ public class MainActivity extends Activity {
 								String sharedTitle = diaries.get(position).getTitle();
 								String sharedText = diaries.get(position).getText();
 								String sharedImagePath = diaries.get(position).getImageFilePath();
-
+								
 								shareMsg(MainActivity.this, getTitle().toString(), sharedTitle, sharedText, sharedImagePath);
 
 								dialog.dismiss();
@@ -301,7 +302,9 @@ public class MainActivity extends Activity {
 			File f = new File(imgPath);
 			if (f != null && f.exists() && f.isFile()) {
 				intent.setType("image/png");
-				Uri u = Uri.fromFile(f);
+				//Uri u = Uri.fromFile(f);
+				String test = context.getPackageName();
+				Uri u = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", f);
 				intent.putExtra(Intent.EXTRA_STREAM, u);
 			}
 		}
