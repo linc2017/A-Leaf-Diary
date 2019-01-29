@@ -124,6 +124,8 @@ public class DiaryEditActivity extends Activity {
 							Intent intent = new Intent();
 							intent.setClass(DiaryEditActivity.this, PaletteActivity.class);
 							intent.putExtra("_id", oldId);
+							intent.putExtra("diary_image_title", diaryImageTitle.getText().toString());
+							intent.putExtra("diary_image_text", diaryImageText.getText().toString());
 							intent.putExtra("imageFilePath", imageFilePath);
 							startActivityForResult(intent, 0);
 						}

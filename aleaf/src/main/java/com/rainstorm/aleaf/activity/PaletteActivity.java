@@ -76,6 +76,8 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 	private int penSize;
 	private int penColor;
 	private boolean isEraser = false;
+	private String strDiaryImageTitle;
+	private String strDiaryImageText;
 	private String imageFilePath = null;
 	private int oldId = -1;
 	
@@ -97,6 +99,8 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 	private void bundleEvents() {
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
+			strDiaryImageTitle = bundle.getString("diary_image_title", null);
+			strDiaryImageText = bundle.getString("diary_image_text", null);
 			imageFilePath = bundle.getString("imageFilePath", null);
 			oldId = bundle.getInt("_id", -1);
 		}
@@ -538,13 +542,16 @@ public class PaletteActivity extends Activity implements OnColorChangedListener{
 				clearMemory(temp);
 				
 				DatabaseManager manager = new DatabaseManager(PaletteActivity.this);
-				if (oldId != -1) {
-					manager.delete(oldId);
-				}
 				SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd H:mm");
 				String strDate = sf.format(curDate);
 				Diary diary = new Diary();
-				diary.setTitle(getString(R.string.diary_title));
+				if (oldId != -1) {
+					diary.setTitle(strDiaryImageTitle);
+					diary.setText(strDiaryImageText);
+					manager.delete(oldId);
+				} else {
+					diary.setTitle(getString(R.string.diary_title));
+				}
 				diary.setDate(strDate);
 				diary.setImageFilePath(fullFilePath);
 				manager.insert(diary);
